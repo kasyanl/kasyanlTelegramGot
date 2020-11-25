@@ -1,4 +1,4 @@
-package by.kasyan.Rpa6TelegramBot;
+package by.kasyan.rpa.telegram;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
