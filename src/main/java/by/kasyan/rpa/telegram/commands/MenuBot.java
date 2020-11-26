@@ -1,6 +1,6 @@
 package by.kasyan.rpa.telegram.commands;
 
-public class Hello extends CommandProcessor {
+public class MenuBot extends CommandProcessor {
     @Override
     public String getResponse() {
         return printInformation();
@@ -14,10 +14,7 @@ public class Hello extends CommandProcessor {
             description.append(String.format("%n%s - %s", command.getCommand(), command.getDescription()));
         }
 
-        return String.format("Здравствуйте!" +
-                "\nЭто мой первый телеграм бот." +
-                "\nЗдесь пока только %s команд. " +
-                "Попробуйте ввести комманды ниже и посмотрите что произойдет: %s",
+        return String.format("Выберите одну из %s команд: %s",
                 commands.length,
                 description);
     }

@@ -2,14 +2,15 @@ package by.kasyan.rpa.telegram.commands;
 
 public enum BotCommand {
 
-    NONE("", ""),
-    START("/start", "Вывести меню"),
+    START("/start", "Старт"),
     HELLO("/hello", "Приветствие"),
-    BYE("/bye", "Прощанье"),
+    MENU("/menu", "Вывести меню"),
+    BY_NEWS("/bynews", "Новости Беларуси"),
     OPEN_MOODLE("/moodle", "Начать обучаться Java"),
     SHOW_POGODA("/pogoda", "Прогноз на неделю"),
-    BY_NEWS("/bynews", "Новости Беларуси"),
-    WORLD_NEWS("/worldnews", "Новости Мира");
+    WORLD_NEWS("/worldnews", "Новости Мира"),
+    BYE("/bye", "Прощанье"),
+    NONE("", "");
 
     final String command;
     final String description;
@@ -41,6 +42,8 @@ public enum BotCommand {
                 return SHOW_POGODA;
             case "/bynews":
                 return BY_NEWS;
+            case "/menu":
+                return MENU;
             case "/worldnews":
                 return WORLD_NEWS;
             default:

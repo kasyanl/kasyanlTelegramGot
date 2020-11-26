@@ -1,19 +1,22 @@
 package by.kasyan.rpa.telegram.commands;
 
 public class ByNews extends CommandProcessor {
+
     @Override
-    public String getResponse() {
+        public String getResponse() {
         return String.format("%s, %n%s",
-                newsFromOnt(),
-                newsFromTutBy());
+                newsFromTutBy(),
+                newsFromBelta());
     }
 
     private String newsFromTutBy() {
-        return "Последние новости в беларуси:" +
-                "\nhttps://tut.by";
+        return "Возврат в меню /menu"+
+                "\nПоследние новости в беларуси:" +
+                "\nhttps://news.tut.by";
     }
 
-    private String newsFromOnt() {
-        return "";
+    private String newsFromBelta() {
+        return "Последние официальные новости в беларуси:" +
+                "\nhttps://belta.by";
     }
 }
