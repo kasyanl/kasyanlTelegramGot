@@ -1,6 +1,7 @@
 package by.kasyan.rpa.telegram.processor;
 
 import by.kasyan.rpa.telegram.commands.*;
+import by.kasyan.rpa.telegram.commands.headmenu.*;
 import by.kasyan.rpa.telegram.dto.MyResponse;
 import org.telegram.telegrambots.meta.api.objects.Message;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -31,17 +32,21 @@ public class UpdateDispatcher {
                 return new MyResponse(chatId, new MenuBot());
             case HELLO:
                 return new MyResponse(chatId, new Hello());
-            case BY_NEWS:
-                return new MyResponse(chatId, new ByNews());
+            case NEWS:
+                return new MyResponse(chatId, new NewsAll());
             case BYE:
                 return new MyResponse(chatId, new ByeBye());
             case OPEN_MOODLE:
                 return new MyResponse(chatId, new MoodleShool());
             case SHOW_POGODA:
                 return new MyResponse(chatId, new ShowPogoda());
-            case WORLD_NEWS:
-                return new MyResponse(chatId, new WorldNews());
-            case NONE:
+            case GAMES:
+                return new MyResponse(chatId, new GamesOnline());
+            case MUSIC:
+                return new MyResponse(chatId, new MusicOnline());
+            case VIDEO:
+                return new MyResponse(chatId, new VideoOnline());
+                case NONE:
             default:
                 return new MyResponse(chatId, new NotSupported());
         }

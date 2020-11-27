@@ -1,4 +1,7 @@
-package by.kasyan.rpa.telegram.commands;
+package by.kasyan.rpa.telegram.commands.headmenu;
+
+import by.kasyan.rpa.telegram.commands.BotCommand;
+import by.kasyan.rpa.telegram.commands.CommandProcessor;
 
 public class MenuBot extends CommandProcessor {
     @Override
