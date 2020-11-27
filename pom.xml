@@ -1,67 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.3.6.RELEASE</version>
-		<relativePath/> <!-- lookup parent from repository -->
-	</parent>
-	<groupId>by.kasyan</groupId>
-	<artifactId>Rpa6TelegramBot</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>TelegramBot</name>
-	<description>Telegram bot</description>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.6.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>by.kasyan</groupId>
+    <artifactId>Rpa6TelegramBot</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>TelegramBot</name>
+    <description>Telegram bot</description>
 
+    <properties>
 	<properties>
-		<java.version>1.8</java.version>
+        <java.version>1.8</java.version>
+
+        <sonar.projectKey>kasyanl_kasyanlTelegramGot</sonar.projectKey>
+        <sonar.organization>kasyanl</sonar.organization>
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+    </properties>
 	</properties>
-	<properties>
- 		<sonar.projectKey>kasyanl_kasyanlTelegramGot</sonar.projectKey>
-		<sonar.organization>kasyanl</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		</properties>
 
-	<dependencies>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.telegram</groupId>
-			<artifactId>telegrambots-spring-boot-starter</artifactId>
-			<version>4.1.2</version>
-		</dependency>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.telegram</groupId>
+            <artifactId>telegrambots-spring-boot-starter</artifactId>
+            <version>4.1.2</version>
+        </dependency>
 
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
 
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.jetbrains</groupId>
-			<artifactId>annotations</artifactId>
-			<version>RELEASE</version>
-			<scope>compile</scope>
-		</dependency>
-	</dependencies>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
+    </dependencies>
 
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>2.3.6.RELEASE</version>
-			</plugin>
-		</plugins>
-	</build>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.3.6.RELEASE</version>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

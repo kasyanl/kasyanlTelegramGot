@@ -27,11 +27,10 @@ public class KasyanlRpa6Bot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         MyResponse response = updateDispatcher.dispatch(update);
         sendMesg(response);
+
     }
 
-
-
-    public void sendMesg (MyResponse response){
+    public void sendMesg(MyResponse response) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(response.getChatId());
         sendMessage.setText(response.getResponse());
@@ -43,4 +42,6 @@ public class KasyanlRpa6Bot extends TelegramLongPollingBot {
         }
     }
 }
+
+
 
