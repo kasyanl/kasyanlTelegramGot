@@ -1,1 +1,1 @@
-web: java -cp target/classes/;target/dependency/* by.kasyan.rpa.telegram.TelegramBotApplication
+web: java -cp $JAVA_OPTS target/classes/by/kasyan/rpa/telegram/TelegramBotApplication
