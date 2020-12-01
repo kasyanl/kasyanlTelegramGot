@@ -15,13 +15,13 @@
     <description>Telegram bot</description>
 
     <properties>
-	<properties>
+
         <java.version>1.8</java.version>
 
         <sonar.projectKey>kasyanl_kasyanlTelegramGot</sonar.projectKey>
         <sonar.organization>kasyanl</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-    </properties>
+
 	</properties>
 
     <dependencies>
