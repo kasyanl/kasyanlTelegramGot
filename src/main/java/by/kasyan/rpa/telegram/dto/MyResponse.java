@@ -17,8 +17,7 @@ public class MyResponse {
         this.response = processor.getResponse();
     }
 
-    public Long getChatId() {
-        return chatId;
+    public Long getChatId() { return chatId;
     }
 
     public String getResponse() {
