@@ -26,12 +26,10 @@ public class KasyanlRpa6Bot extends TelegramLongPollingBot {
         return "1309794458:AAHD1J0liCYQK7AklzwqrkD7PBy9Lbe7xIo";
     }
 
-
     @Override
     public void onUpdateReceived(Update update) {
         MyResponse response = updateDispatcher.dispatch(update);
         sendMesg(response);
-
     }
 
     public void sendMesg(MyResponse response) {
@@ -39,39 +37,21 @@ public class KasyanlRpa6Bot extends TelegramLongPollingBot {
         sendMessage.setChatId(response.getChatId());
         sendMessage.setText(response.getResponse());
 
-        // Создаем клавиуатуру
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
         replyKeyboardMarkup.setSelective(true);
         replyKeyboardMarkup.setResizeKeyboard(true);
         replyKeyboardMarkup.setOneTimeKeyboard(false);
 
-        // Создаем список строк клавиатуры
         List<KeyboardRow> keyboard = new ArrayList<>();
 
-        // Первая строчка клавиатуры
         KeyboardRow keyboardFirstRow = new KeyboardRow();
-        // Добавляем кнопки в первую строчку клавиатуры
-        keyboardFirstRow.add("/video");
-        keyboardFirstRow.add("/music");
 
-        // Вторая строчка клавиатуры
-        KeyboardRow keyboardSecondRow = new KeyboardRow();
-        // Добавляем кнопки во вторую строчку клавиатуры
-        keyboardSecondRow.add("/news");
-        keyboardSecondRow.add("/pogoda");
+        keyboardFirstRow.add("/random_answer");
+        keyboardFirstRow.add("/select_theme");
 
-        // третья строчка клавиатуры
-        KeyboardRow keyboardTryRow = new KeyboardRow();
-        // Добавляем кнопки во вторую строчку клавиатуры
-        keyboardTryRow.add("/games");
-        keyboardTryRow.add("/moodle");
-
-        // Добавляем все строчки клавиатуры в список
         keyboard.add(keyboardFirstRow);
-        keyboard.add(keyboardSecondRow);
-        keyboard.add(keyboardTryRow);
-        // и устанваливаем этот список нашей клавиатуре
+
         replyKeyboardMarkup.setKeyboard(keyboard);
 
         try {

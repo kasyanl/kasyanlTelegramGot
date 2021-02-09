@@ -1,6 +1,5 @@
 package by.kasyan.rpa.telegram.commands.headmenu;
 
-import by.kasyan.rpa.telegram.commands.BotCommand;
 import by.kasyan.rpa.telegram.commands.CommandProcessor;
 
 public class Hello extends CommandProcessor {
@@ -10,19 +9,13 @@ public class Hello extends CommandProcessor {
     }
 
     public String printInformation() {
-        BotCommand[] commands = BotCommand.values();
-        StringBuilder description = new StringBuilder();
 
-        for (BotCommand command : commands) {
-            description.append(String.format("%n%s - %s", command.getCommand(), command.getDescription()));
-        }
-
-        return String.format("Здравствуйте!" +
-                "\nЭто мой первый телеграм бот." +
-                "\nЗдесь пока только %s команд. " +
-                "Попробуйте ввести комманды ниже и посмотрите что произойдет " +
-                        "или выбрать комманду внизу экрана: %s",
-                commands.length,
-                description);
+        return "Здраствуйте! Данный бот нацелен на тренировку и оттачивание " +
+                "теоретических знаний для прохождения собеседования " +
+                "на специальность JAVA-разработчика. Для начала работы выберите тему либо" +
+                " воспользуйтесь режимом случайного выбора вопроса:" +
+                "\n/random_answer - Выбор случайного вопроса" +
+                "\n/select_theme - Выбор темы" +
+                "\n/moodle - посмотреть весь перечень вопросов";
     }
 }
