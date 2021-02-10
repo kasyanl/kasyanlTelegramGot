@@ -1,66 +1,58 @@
 package by.kasyan.rpa.telegram.processor;
 
-import by.kasyan.rpa.telegram.dto.MyResponse;
+
+import lombok.Getter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-import java.util.ArrayList;
+
+import java.io.Serializable;
 import java.util.List;
 
 @Component
 public class KasyanlRpa6Bot extends TelegramLongPollingBot {
+    static  final Logger log = LoggerFactory.getLogger(KasyanlRpa6Bot.class);
+    @Value("${bot.name}")
+    @Getter
+    private String botUsername;
 
-    UpdateDispatcher updateDispatcher = new UpdateDispatcher();
+    @Value("${bot.token}")
+    @Getter
+    private String botToken;
 
-    @Override
-    public String getBotUsername() {
-        return "kasyan_rpa6_telegram_bot";
-    }
+    private final UpdateReceiver updateReceiver;
 
-    @Override
-    public String getBotToken() {
-        return "1309794458:AAHD1J0liCYQK7AklzwqrkD7PBy9Lbe7xIo";
+    public KasyanlRpa6Bot(UpdateReceiver updateReceiver) {
+        this.updateReceiver = updateReceiver;
     }
 
     @Override
     public void onUpdateReceived(Update update) {
-        MyResponse response = updateDispatcher.dispatch(update);
-        sendMesg(response);
+
+        List<PartialBotApiMethod<? extends Serializable>> messagesToSend = updateReceiver.handle(update);
+
+        if (messagesToSend != null && !messagesToSend.isEmpty()) {
+            messagesToSend.forEach(response -> {
+                if (response instanceof SendMessage) {
+                    executeWithExceptionCheck((SendMessage) response);
+                }
+            });
+        }
     }
 
-    public void sendMesg(MyResponse response) {
-        SendMessage sendMessage = new SendMessage();
-        sendMessage.setChatId(response.getChatId());
-        sendMessage.setText(response.getResponse());
-
-        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        sendMessage.setReplyMarkup(replyKeyboardMarkup);
-        replyKeyboardMarkup.setSelective(true);
-        replyKeyboardMarkup.setResizeKeyboard(true);
-        replyKeyboardMarkup.setOneTimeKeyboard(false);
-
-        List<KeyboardRow> keyboard = new ArrayList<>();
-
-        KeyboardRow keyboardFirstRow = new KeyboardRow();
-
-        keyboardFirstRow.add("/random_answer");
-        keyboardFirstRow.add("/select_theme");
-
-        keyboard.add(keyboardFirstRow);
-
-        replyKeyboardMarkup.setKeyboard(keyboard);
-
+    public void executeWithExceptionCheck(SendMessage sendMessage) {
         try {
             execute(sendMessage);
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            log.error("oops");
         }
     }
 }
 
-
-
+</partialbotapimethod<?>

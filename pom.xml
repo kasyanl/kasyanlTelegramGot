@@ -15,10 +15,12 @@
     <description>Telegram bot</description>
 
     <properties>
-	<java.version>1.8</java.version>
+	<java.version>1.11</java.version>
         <sonar.projectKey>kasyanl_kasyanlTelegramGot</sonar.projectKey>
         <sonar.organization>kasyanl</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+
+
    </properties>
 
     <dependencies>
@@ -31,6 +33,21 @@
             <artifactId>telegrambots-spring-boot-starter</artifactId>
             <version>4.1.2</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.16</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.2.18</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -55,6 +72,10 @@
             <artifactId>surefire-api</artifactId>
             <version>2.22.2</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
     </dependencies>
