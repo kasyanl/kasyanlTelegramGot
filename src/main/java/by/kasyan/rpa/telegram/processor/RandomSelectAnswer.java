@@ -1,28 +1,30 @@
 package by.kasyan.rpa.telegram.processor;
 
-import by.kasyan.rpa.telegram.Answer.*;
-
 import by.kasyan.rpa.telegram.commands.CommandProcessor;
-import by.kasyan.rpa.telegram.commands.headmenu.NotSupported;
-import by.kasyan.rpa.telegram.dto.MyResponse;
 
-public class RandomSelectAnswer extends CommandProcessor {
+public class RandomSelectAnswer implements CommandProcessor {
 
-    public static MyResponse processText(Long chatId){
+    public static String processText() {
         int number = (int) (Math.random() * 5);
-        switch (number){
+        switch (number) {
             case 1:
-                return new MyResponse(chatId, new Answer1());
+                return "/answer1";
             case 2:
-                return new MyResponse(chatId, new Answer2());
+                return "/answer2";
             case 3:
-                return new MyResponse(chatId, new Answer3());
+                return "/answer3";
             case 4:
-                return new MyResponse(chatId, new Answer4());
+                return "/answer4";
             case 5:
-                return new MyResponse(chatId, new Answer5());
+                return "/answer5";
             default:
-                return new MyResponse(chatId, new NotSupported());
+                return "";
         }
     }
+
+    @Override
+    public String getResponse() {
+        return "Вопрос выбран: " + processText() + "";
+    }
 }
+

@@ -1,13 +1,9 @@
 package by.kasyan.rpa.telegram.commands;
 
-public abstract class CommandProcessor {
+import by.kasyan.rpa.telegram.dto.MyResponse;
 
-    public String getResponse(){
-        return "";
-    }
+public interface CommandProcessor {
 
-    public int getInt() {
-        return 0;
-    }
+    String getResponse();
 }
 
