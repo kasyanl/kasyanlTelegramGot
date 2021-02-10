@@ -12,4 +12,3 @@ public interface JpaQuestionRepository extends JpaRepository<Question, JpaUserRe
 @Query(nativeQuery = true, value = "SELECT *  FROM java_quiz ORDER BY random() LIMIT 1")
     Question getRandomQuestion();
             }
-</question>

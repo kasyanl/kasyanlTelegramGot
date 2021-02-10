@@ -12,9 +12,7 @@ import java.util.List;
 
 @Component
 public class UpdateReceiver {
-    // Храним доступные хендлеры в списке (подсмотрел у Miroha)
     private final List<Handler> handlers;
-    // Имеем доступ в базу пользователей
     private final JpaUserRepository userRepository;
 
     public UpdateReceiver(List<Handler> handlers, JpaUserRepository userRepository) {
@@ -22,13 +20,10 @@ public class UpdateReceiver {
         this.userRepository = userRepository;
     }
 
-    // Обрабатываем полученный Update
     public List<PartialBotApiMethod<? extends Serializable>> handle(Update update) {
-        // try-catch, чтобы при несуществующей команде просто возвращать пустой список
+
         try {
-            // Проверяем, если Update - сообщение с текстом
             if (isMessageWithText(update)) {
-                // Получаем Message из Update
                 final Message message = update.getMessage();
                 // Получаем айди чата с пользователем
                 final int chatId = message.getFrom().getId();
@@ -75,6 +70,3 @@ public class UpdateReceiver {
         return !update.hasCallbackQuery() && update.hasMessage() && update.getMessage().hasText();
     }
 }
-
-</Partialbotapimethod<?></handler></handler>
-

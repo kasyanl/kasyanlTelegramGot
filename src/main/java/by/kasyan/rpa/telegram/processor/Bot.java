@@ -1,6 +1,5 @@
 package by.kasyan.rpa.telegram.processor;
 
-
 import lombok.Getter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +15,8 @@ import java.io.Serializable;
 import java.util.List;
 
 @Component
-public class KasyanlRpa6Bot extends TelegramLongPollingBot {
-    static  final Logger log = LoggerFactory.getLogger(KasyanlRpa6Bot.class);
+public class Bot extends TelegramLongPollingBot {
+    static  final Logger log = LoggerFactory.getLogger(Bot.class);
     @Value("${bot.name}")
     @Getter
     private String botUsername;
@@ -28,7 +27,7 @@ public class KasyanlRpa6Bot extends TelegramLongPollingBot {
 
     private final UpdateReceiver updateReceiver;
 
-    public KasyanlRpa6Bot(UpdateReceiver updateReceiver) {
+    public Bot(UpdateReceiver updateReceiver) {
         this.updateReceiver = updateReceiver;
     }
 
@@ -54,5 +53,3 @@ public class KasyanlRpa6Bot extends TelegramLongPollingBot {
         }
     }
 }
-
-</partialbotapimethod<?>

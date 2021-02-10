@@ -53,5 +53,3 @@ public class StartHandler implements Handler {
         return Collections.emptyList();
     }
 }
-
-</string></partialbotapimethod<?>

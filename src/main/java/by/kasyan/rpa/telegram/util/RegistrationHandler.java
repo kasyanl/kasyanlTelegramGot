@@ -106,5 +106,3 @@ public class RegistrationHandler implements Handler {
         return List.of(NAME_ACCEPT, NAME_CHANGE, NAME_CHANGE_CANCEL);
     }
 }
-
-</string></inlinekeyboardbutton></partialbotapimethod<?></inlinekeyboardbutton></partialbotapimethod<?></inlinekeyboardbutton></partialbotapimethod<?></partialbotapimethod<?>

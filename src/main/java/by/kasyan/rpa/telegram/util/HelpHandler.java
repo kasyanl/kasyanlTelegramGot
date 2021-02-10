@@ -43,5 +43,3 @@ public class HelpHandler implements Handler {
         return Collections.emptyList();
     }
 }
-
-</string></inlinekeyboardbutton></partialbotapimethod<?>

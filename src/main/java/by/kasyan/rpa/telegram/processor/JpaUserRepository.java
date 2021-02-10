@@ -9,7 +9,6 @@ import java.util.Optional;
 @Repository
 @Transactional(readOnly = true)
 public interface JpaUserRepository extends JpaRepository<User, JpaQuestionRepository> {
-// По названию метода Spring сам поймет, что мы хотим получить пользователя по переданному chatId
-        Optional<User> getByChatId(int chatId);
-        }
-</user></user,>
+    // По названию метода Spring сам поймет, что мы хотим получить пользователя по переданному chatId
+    Optional<User> getByChatId(int chatId);
+}

@@ -139,5 +139,4 @@ public class QuizHandler implements Handler {
                 .setText(sb.toString())
                 .setReplyMarkup(inlineKeyboardMarkup));
     }
-
 }
