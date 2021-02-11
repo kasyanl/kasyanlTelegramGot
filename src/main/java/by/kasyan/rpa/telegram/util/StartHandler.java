@@ -31,11 +31,11 @@ public class StartHandler implements Handler {
         // Приветствуем пользователя
         SendMessage welcomeMessage = createMessageTemplate(user)
                 .setText(String.format(
-                        "Hola! I'm *%s*%nI am here to help you learn Java", botUsername
+                        "Привет! Я бот, который поможет повторить пройденный материал по Java", botUsername
                 ));
         // Просим назваться
         SendMessage registrationMessage = createMessageTemplate(user)
-                .setText("In order to start our journey tell me your name");
+                .setText("Для начала представься");
         // Меняем пользователю статус на - "ожидание ввода имени"
         user.setBotState(State.ENTER_NAME);
         userRepository.save(user);
