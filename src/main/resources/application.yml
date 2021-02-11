@@ -1,0 +1,16 @@
+
+bot:
+  name: kasyan_rpa6_telegram_bot
+  token: 1309794458:AAHD1J0liCYQK7AklzwqrkD7PBy9Lbe7xIo
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+  datasource:
+    platform: postgres
+    url: jdbc:postgresql://ec2-54-72-155-238.eu-west-1.compute.amazonaws.com:5432/d23nm40ngsd4ar
+    username: tfpcifmlmmxisv
+    password: 7a86c647d125144cf612fac96e941af8d49298ed0fe0db2a3ec924cbbe8ea0b2
+    driverClassName: org.postgresql.Driver
