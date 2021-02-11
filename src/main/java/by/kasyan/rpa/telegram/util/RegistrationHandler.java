@@ -55,7 +55,7 @@ public class RegistrationHandler implements Handler {
         inlineKeyboardMarkup.setKeyboard(List.of(inlineKeyboardButtonsRowOne));
 
         return List.of(createMessageTemplate(user).setText(String.format(
-                "Your name is saved as: %s", user.getName()))
+                "Твое имя сохранено, как: %s", user.getName()))
                 .setReplyMarkup(inlineKeyboardMarkup));
     }
 
@@ -69,12 +69,12 @@ public class RegistrationHandler implements Handler {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         List<InlineKeyboardButton> inlineKeyboardButtonsRowOne = List.of(
-                createInlineKeyboardButton("Accept", NAME_ACCEPT));
+                createInlineKeyboardButton("Принять", NAME_ACCEPT));
 
         inlineKeyboardMarkup.setKeyboard(List.of(inlineKeyboardButtonsRowOne));
 
         return List.of(createMessageTemplate(user)
-                .setText(String.format("You have entered: %s%nIf this is correct - press the button", user.getName()))
+                .setText(String.format("Ваше имя: %s%n Для подтверждения, нажмите кнопку ниже", user.getName()))
                 .setReplyMarkup(inlineKeyboardMarkup));
     }
 
@@ -87,12 +87,12 @@ public class RegistrationHandler implements Handler {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         List<InlineKeyboardButton> inlineKeyboardButtonsRowOne = List.of(
-                createInlineKeyboardButton("Cancel", NAME_CHANGE_CANCEL));
+                createInlineKeyboardButton("Завершить", NAME_CHANGE_CANCEL));
 
         inlineKeyboardMarkup.setKeyboard(List.of(inlineKeyboardButtonsRowOne));
 
         return List.of(createMessageTemplate(user).setText(String.format(
-                "Your current name is: %s%nEnter new name or press the button to continue", user.getName()))
+                "Ваше нынешнее имя: %s%n Введите новое имя или нажмите кнопку, чтобы продолжить", user.getName()))
                 .setReplyMarkup(inlineKeyboardMarkup));
     }
 

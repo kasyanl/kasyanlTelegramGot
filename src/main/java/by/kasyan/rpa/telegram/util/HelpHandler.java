@@ -23,7 +23,7 @@ public class HelpHandler implements Handler {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         List<InlineKeyboardButton> inlineKeyboardButtonsRowOne = List.of(
-                createInlineKeyboardButton("Change name", NAME_CHANGE));
+                createInlineKeyboardButton("Сменить имя", NAME_CHANGE));
 
         inlineKeyboardMarkup.setKeyboard(List.of(inlineKeyboardButtonsRowOne));
 

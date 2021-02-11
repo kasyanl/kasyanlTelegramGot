@@ -1,8 +1,10 @@
 package by.kasyan.rpa.telegram.util;
 
 import by.kasyan.rpa.telegram.processor.*;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -15,9 +17,9 @@ import java.util.List;
 import static by.kasyan.rpa.telegram.util.TelegramUtil.createInlineKeyboardButton;
 import static by.kasyan.rpa.telegram.util.TelegramUtil.createMessageTemplate;
 
+@Slf4j
+@Component
 public class QuizHandler implements Handler {
-
-    static  final Logger log = LoggerFactory.getLogger(QuizHandler.class);
     //Храним поддерживаемые CallBackQuery в виде констант
     public static final String QUIZ_CORRECT = "/quiz_correct";
     public static final String QUIZ_INCORRECT = "/quiz_incorrect";
@@ -46,18 +48,8 @@ public class QuizHandler implements Handler {
         }
     }
 
-    @Override
-    public State operatedBotState() {
-        return null;
-    }
-
-    @Override
-    public List<String> operatedCallBackQuery() {
-        return null;
-    }
-
     private List<PartialBotApiMethod<? extends Serializable>> correctAnswer(User user, String message) {
-        log.info("correct");
+        log.info("правильно");
         final int currentScore = user.getScore() + 1;
         user.setScore(currentScore);
         userRepository.save(user);
@@ -65,7 +57,7 @@ public class QuizHandler implements Handler {
         return nextQuestion(user);
     }
 
-    private List<PartialBotApiMethod<? extends Serializable>> incorrectAnswer(User user) {
+    private  List<PartialBotApiMethod<? extends Serializable>> incorrectAnswer(User user) {
         final int currentScore = user.getScore();
         // Обновляем лучший итог
         if (user.getHighScore() < currentScore) {
@@ -80,12 +72,12 @@ public class QuizHandler implements Handler {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         List<InlineKeyboardButton> inlineKeyboardButtonsRowOne = List.of(
-                createInlineKeyboardButton("Try again?", QUIZ_START));
+                createInlineKeyboardButton("Попробуем еще раз?", QUIZ_START));
 
         inlineKeyboardMarkup.setKeyboard(List.of(inlineKeyboardButtonsRowOne));
 
         return List.of(createMessageTemplate(user)
-                .setText(String.format("Incorrect!%nYou scored *%d* points!", currentScore))
+                .setText(String.format("Неправильно!%nТвой счет *%d* очков!", currentScore))
                 .setReplyMarkup(inlineKeyboardMarkup));
     }
 
@@ -96,7 +88,7 @@ public class QuizHandler implements Handler {
         return nextQuestion(user);
     }
 
-    private List<PartialBotApiMethod<? extends Serializable>> nextQuestion(User user) {
+    private List<PartialBotApiMethod<? extends Serializable>>  nextQuestion(User user) {
         Question question = questionRepository.getRandomQuestion();
 
         // Собираем список возможных вариантов ответа
@@ -138,5 +130,15 @@ public class QuizHandler implements Handler {
         return List.of(createMessageTemplate(user)
                 .setText(sb.toString())
                 .setReplyMarkup(inlineKeyboardMarkup));
+    }
+
+    @Override
+    public State operatedBotState() {
+        return null;
+    }
+
+    @Override
+    public List<String> operatedCallBackQuery() {
+        return List.of(QUIZ_START, QUIZ_CORRECT, QUIZ_INCORRECT);
     }
 }
