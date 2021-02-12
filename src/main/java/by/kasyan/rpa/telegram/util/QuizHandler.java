@@ -2,8 +2,6 @@ package by.kasyan.rpa.telegram.util;
 
 import by.kasyan.rpa.telegram.processor.*;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -39,6 +37,7 @@ public class QuizHandler implements Handler {
     public List<PartialBotApiMethod<? extends Serializable>> handle(User user, String message) {
         if (message.startsWith(QUIZ_CORRECT)) {
             // действие на коллбек с правильным ответом
+            log.info("правильно");
             return correctAnswer(user, message);
         } else if (message.startsWith(QUIZ_INCORRECT)) {
             // действие на коллбек с неправильным ответом
@@ -49,7 +48,7 @@ public class QuizHandler implements Handler {
     }
 
     private List<PartialBotApiMethod<? extends Serializable>> correctAnswer(User user, String message) {
-        log.info("правильно");
+
         final int currentScore = user.getScore() + 1;
         user.setScore(currentScore);
         userRepository.save(user);
@@ -59,6 +58,7 @@ public class QuizHandler implements Handler {
 
     private  List<PartialBotApiMethod<? extends Serializable>> incorrectAnswer(User user) {
         final int currentScore = user.getScore();
+
         // Обновляем лучший итог
         if (user.getHighScore() < currentScore) {
             user.setHighScore(currentScore);
