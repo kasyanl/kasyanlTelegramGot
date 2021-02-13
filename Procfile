@@ -1,1 +1,1 @@
-web: java -cp target/classes/by.kasyan.rpa.telegram.TelegramBotApplication
+web java -Dserver.port=$PORT $JAVA_OPTS -jar target/Rpa6TelegramBot-0.0.1-SNAPSHOT.jar
