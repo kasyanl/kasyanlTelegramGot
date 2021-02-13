@@ -18,23 +18,23 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Question extends AbstractBaseEntity {
-    @Column(name = "question", nullable = false)
+    @Column(name = "question", length = 1024)
     @NotBlank
     private String question;
 
-    @Column(name = "answer_correct", nullable = false)
+    @Column(name = "answer_correct", length = 1024)
     @NotBlank
     private String correctAnswer;
 
-    @Column(name = "option2", nullable = false)
+    @Column(name = "option2", length = 1024)
     @NotBlank
     private String optionOne;
 
-    @Column(name = "option1", nullable = false)
+    @Column(name = "option1", length = 1024)
     @NotBlank
     private String optionTwo;
 
-    @Column(name = "option3", nullable = false)
+    @Column(name = "option3", length = 1024)
     @NotBlank
     private String optionThree;
 
