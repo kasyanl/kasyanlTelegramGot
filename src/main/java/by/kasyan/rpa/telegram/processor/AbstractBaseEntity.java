@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Setter
 public abstract class AbstractBaseEntity {
     @Id
-    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1)
+    @SequenceGenerator(name = "global_seq", sequenceName = "global_seq", allocationSize = 1, initialValue = 2)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "global_seq")
 
     protected Integer id;
