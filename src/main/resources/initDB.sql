@@ -6,7 +6,7 @@ CREATE TABLE users
 (
     id         INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
     chat_id    INTEGER UNIQUE                NOT NULL,
-    name       VARCHAR                       NOT NULL,
+    name       VARCHAR                     NOT NULL,
     score      INTEGER             DEFAULT 0 NOT NULL,
     high_score INTEGER             DEFAULT 0 NOT NULL,
     bot_state  VARCHAR                       NOT NULL
@@ -15,9 +15,9 @@ CREATE TABLE users
 CREATE TABLE java_quiz
 (
     id             INTEGER PRIMARY KEY DEFAULT nextval('global_seq'),
-    question       VARCHAR NOT NULL,
-    answer_correct VARCHAR NOT NULL,
-    option1        VARCHAR NOT NULL,
-    option2        VARCHAR NOT NULL,
-    option3        VARCHAR NOT NULL
+    question       VARCHAR(1024)   NOT NULL,
+    answer_correct VARCHAR(1024)   NOT NULL,
+    option1        VARCHAR(1024)   NOT NULL,
+    option2        VARCHAR(1024)   NOT NULL,
+    option3        VARCHAR(1024)   NOT NULL
 );

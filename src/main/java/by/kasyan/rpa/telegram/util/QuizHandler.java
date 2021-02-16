@@ -4,6 +4,7 @@ import by.kasyan.rpa.telegram.processor.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
@@ -37,7 +38,7 @@ public class QuizHandler implements Handler {
     public List<PartialBotApiMethod<? extends Serializable>> handle(User user, String message) {
         if (message.startsWith(QUIZ_CORRECT)) {
             // действие на коллбек с правильным ответом
-            log.info("правильно");
+           // log.info("правильно");
             return correctAnswer(user, message);
         } else if (message.startsWith(QUIZ_INCORRECT)) {
             // действие на коллбек с неправильным ответом
@@ -131,6 +132,13 @@ public class QuizHandler implements Handler {
                 .setText(sb.toString())
                 .setReplyMarkup(inlineKeyboardMarkup));
     }
+//    public List<PartialBotApiMethod<? extends Serializable>> currentMessage(User user){
+//        SendMessage text = createMessageTemplate(user)
+//                .setText(String.format(
+//                        "Прапвильно!"));
+//        return List.of(text);
+//    }
+
 
     @Override
     public State operatedBotState() {
