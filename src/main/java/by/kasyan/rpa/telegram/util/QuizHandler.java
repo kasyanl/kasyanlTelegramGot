@@ -23,8 +23,11 @@ public class QuizHandler implements Handler {
     public static final String QUIZ_CORRECT = "/quiz_correct";
     public static final String QUIZ_INCORRECT = "/quiz_incorrect";
     public static final String QUIZ_START = "/quiz_start";
+    public static final String QUIZ_NEXT = "/quiz_next";
     //Храним варианты ответа
     private static final List<String> OPTIONS = List.of("A", "B", "C", "D");
+
+    public  static String currentAnswer = "";
 
     private final JpaUserRepository userRepository;
     private final JpaQuestionRepository questionRepository;
@@ -37,27 +40,32 @@ public class QuizHandler implements Handler {
     @Override
     public List<PartialBotApiMethod<? extends Serializable>> handle(User user, String message) {
         if (message.startsWith(QUIZ_CORRECT)) {
+
             // действие на коллбек с правильным ответом
-           // log.info("правильно");
-            return correctAnswer(user, message);
+            return correctAnswer(user); //correctAnswer(user);
         } else if (message.startsWith(QUIZ_INCORRECT)) {
             // действие на коллбек с неправильным ответом
             return incorrectAnswer(user);
-        } else {
+        }else if (message.startsWith(QUIZ_NEXT)) {
+            // действие на коллбек с неправильным ответом
+            return nextQuestion(user);
+        }
+        else {
             return startNewQuiz(user);
         }
     }
 
-    private List<PartialBotApiMethod<? extends Serializable>> correctAnswer(User user, String message) {
+    private List<PartialBotApiMethod<? extends Serializable>> correctAnswer(User user) {
 
         final int currentScore = user.getScore() + 1;
         user.setScore(currentScore);
         userRepository.save(user);
 
-        return nextQuestion(user);
+        return currentMessage(user);
     }
 
     private  List<PartialBotApiMethod<? extends Serializable>> incorrectAnswer(User user) {
+        Question qw = new Question();
         final int currentScore = user.getScore();
 
         // Обновляем лучший итог
@@ -78,43 +86,39 @@ public class QuizHandler implements Handler {
         inlineKeyboardMarkup.setKeyboard(List.of(inlineKeyboardButtonsRowOne));
 
         return List.of(createMessageTemplate(user)
-                .setText(String.format("Неправильно!%nТвой счет *%d* очков!", currentScore))
+              //  .setText(String.format("Правильный ответ - *%d*", currentAnswer))
+                .setText(String.format("Неправильно!%nТвой счет *%d* очков!%nПравильный ответ:%n%n *%s*", currentScore, currentAnswer))
                 .setReplyMarkup(inlineKeyboardMarkup));
     }
 
     private List<PartialBotApiMethod<? extends Serializable>> startNewQuiz(User user) {
         user.setBotState(State.PLAYING_QUIZ);
         userRepository.save(user);
-
         return nextQuestion(user);
     }
 
     private List<PartialBotApiMethod<? extends Serializable>>  nextQuestion(User user) {
         Question question = questionRepository.getRandomQuestion();
-
         // Собираем список возможных вариантов ответа
         List<String> options = new ArrayList<>(List.of(question.getCorrectAnswer(), question.getOptionOne(), question.getOptionTwo(), question.getOptionThree()));
         // Перемешиваем
         Collections.shuffle(options);
-
         // Начинаем формировать сообщение с вопроса
         StringBuilder sb = new StringBuilder();
         sb.append('*')
                 .append(question.getQuestion())
                 .append("*\n\n");
-
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
-
         // Создаем два ряда кнопок
         List<InlineKeyboardButton> inlineKeyboardButtonsRowOne = new ArrayList<>();
         List<InlineKeyboardButton> inlineKeyboardButtonsRowTwo = new ArrayList<>();
-
         // Формируем сообщение и записываем CallBackData на кнопки
         for (int i = 0; i < options.size(); i++) {
             InlineKeyboardButton button = new InlineKeyboardButton();
 
             final String callbackData = options.get(i).equalsIgnoreCase(question.getCorrectAnswer()) ? QUIZ_CORRECT : QUIZ_INCORRECT;
 
+            if (options.get(i).equalsIgnoreCase(question.getCorrectAnswer())) currentAnswer = question.getCorrectAnswer();
             button.setText(OPTIONS.get(i))
                     .setCallbackData(String.format("%s %d", callbackData, question.getId()));
 
@@ -132,13 +136,18 @@ public class QuizHandler implements Handler {
                 .setText(sb.toString())
                 .setReplyMarkup(inlineKeyboardMarkup));
     }
-//    public List<PartialBotApiMethod<? extends Serializable>> currentMessage(User user){
-//        SendMessage text = createMessageTemplate(user)
-//                .setText(String.format(
-//                        "Прапвильно!"));
-//        return List.of(text);
-//    }
 
+    //вывод сообщения, что ответ правильный и создание кнопки для продолжения
+    private List<PartialBotApiMethod<? extends Serializable>> currentMessage(User user) {
+        InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
+        List<InlineKeyboardButton> inlineKeyboardButtonsRowOne = List.of(
+                createInlineKeyboardButton("Нажмите для продолжения", QUIZ_NEXT));
+        inlineKeyboardMarkup.setKeyboard(List.of(inlineKeyboardButtonsRowOne));
+
+        return List.of(createMessageTemplate(user).setText(String.format(
+                "Правильно!", QUIZ_NEXT))
+                .setReplyMarkup(inlineKeyboardMarkup));
+    }
 
     @Override
     public State operatedBotState() {
@@ -147,6 +156,6 @@ public class QuizHandler implements Handler {
 
     @Override
     public List<String> operatedCallBackQuery() {
-        return List.of(QUIZ_START, QUIZ_CORRECT, QUIZ_INCORRECT);
+        return List.of(QUIZ_START, QUIZ_CORRECT, QUIZ_INCORRECT, QUIZ_NEXT);
     }
 }
