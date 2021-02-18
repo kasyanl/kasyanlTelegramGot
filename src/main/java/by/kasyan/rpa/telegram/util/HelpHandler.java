@@ -10,6 +10,7 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static by.kasyan.rpa.telegram.util.RegistrationHandler.NAME_CHANGE;
 import static by.kasyan.rpa.telegram.util.TelegramUtil.createInlineKeyboardButton;
