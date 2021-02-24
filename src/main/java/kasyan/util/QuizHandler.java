@@ -28,7 +28,6 @@ public class QuizHandler implements Handler {
     private static final List<String> OPTIONS = List.of("A", "B", "C", "D");
 
     public static String currentAnswer = "";
-    public static int hightScore = 0;
     private final JpaUserRepository userRepository;
     private final JpaQuestionRepository questionRepository;
 
@@ -70,7 +69,7 @@ public class QuizHandler implements Handler {
         // Обновляем лучший итог
         if (user.getHighScore() < currentScore) {
             user.setHighScore(currentScore);
-            hightScore = currentScore;
+
         }
         // Меняем статус пользователя
         user.setScore(0);
@@ -87,7 +86,7 @@ public class QuizHandler implements Handler {
 
 
         return List.of(createMessageTemplate(user)
-                .setText(String.format("Неправильно!%nПравильный ответ:%n%n *%s*. %n%nТвой счет *%d* очков!%n(рекорд - *%d*)",currentAnswer, currentScore, hightScore))
+                .setText(String.format("Неправильно!%nПравильный ответ:%n%n *%s*. %n%nТвой счет *%d* очков!%n (рекорд - *%d*)",currentAnswer, currentScore, user.getHighScore()))
                 .setReplyMarkup(inlineKeyboardMarkup));
     }
 
