@@ -86,7 +86,7 @@ public class QuizHandler implements Handler {
 
 
         return List.of(createMessageTemplate(user)
-                .setText(String.format("Неправильно!%nПравильный ответ:%n%n *%s*. %n%nТвой счет *%d* очков!%n (рекорд - *%d*)",currentAnswer, currentScore, user.getHighScore()))
+                .setText(String.format("Неправильно!%nПравильный ответ:%n%n *%s*. %n%nТвой счет *%d* очков!%n",currentAnswer, currentScore))
                 .setReplyMarkup(inlineKeyboardMarkup));
     }
 
