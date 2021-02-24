@@ -9,7 +9,7 @@ spring:
       ddl-auto: create-drop
   datasource:
     platform: postgres
-    url: jdbc:postgresql://ec2-34-247-118-233.eu-west-1.compute.amazonaws.com:5432/d55rh4sbbvf25d
-    username: osjsckpvzmcwch
-    password: 7c55b24609c6eb8350b0c2f6fd971283b5b9f5af54a43c3e4912b3c922a0ccaf
+    url: jdbc:postgresql://ec2-99-80-200-225.eu-west-1.compute.amazonaws.com:5432/dcc6kvd6p8q22l
+    username: rbaocowyamcfib
+    password: 4a7eed570cacc0b0a455bf72b6179c91e3f165af89975ebb250bbe163955455b
     driverClassName: org.postgresql.Driver
