@@ -1,6 +1,6 @@
-package by.kasyan.rpa.telegram.util;
+package kasyan.util;
 
-import by.kasyan.rpa.telegram.processor.User;
+import kasyan.processor.User;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 

@@ -1,8 +1,8 @@
-package by.kasyan.rpa.telegram.util;
+package kasyan.util;
 
-import by.kasyan.rpa.telegram.processor.Handler;
-import by.kasyan.rpa.telegram.processor.State;
-import by.kasyan.rpa.telegram.processor.User;
+import kasyan.processor.Handler;
+import kasyan.processor.State;
+import kasyan.processor.User;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
@@ -10,11 +10,9 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Stream;
 
-import static by.kasyan.rpa.telegram.util.RegistrationHandler.NAME_CHANGE;
-import static by.kasyan.rpa.telegram.util.TelegramUtil.createInlineKeyboardButton;
-import static by.kasyan.rpa.telegram.util.TelegramUtil.createMessageTemplate;
+import static kasyan.util.RegistrationHandler.NAME_CHANGE;
+import static kasyan.util.TelegramUtil.createMessageTemplate;
 
 public class HelpHandler implements Handler {
 
@@ -24,11 +22,11 @@ public class HelpHandler implements Handler {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         List<InlineKeyboardButton> inlineKeyboardButtonsRowOne = List.of(
-                createInlineKeyboardButton("Сменить имя", NAME_CHANGE));
+                TelegramUtil.createInlineKeyboardButton("Сменить имя", NAME_CHANGE));
 
         inlineKeyboardMarkup.setKeyboard(List.of(inlineKeyboardButtonsRowOne));
 
-        return List.of(createMessageTemplate(user).setText(String.format("" +
+        return List.of(TelegramUtil.createMessageTemplate(user).setText(String.format("" +
                 "You've asked for help %s? Here it comes!", user.getName()))
                 .setReplyMarkup(inlineKeyboardMarkup));
 

@@ -1,4 +1,4 @@
-package by.kasyan.rpa.telegram.processor;
+package kasyan.processor;
 
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;

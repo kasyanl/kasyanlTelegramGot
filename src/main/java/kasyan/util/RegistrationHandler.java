@@ -1,9 +1,9 @@
-package by.kasyan.rpa.telegram.util;
+package kasyan.util;
 
-import by.kasyan.rpa.telegram.processor.Handler;
-import by.kasyan.rpa.telegram.processor.JpaUserRepository;
-import by.kasyan.rpa.telegram.processor.State;
-import by.kasyan.rpa.telegram.processor.User;
+import kasyan.processor.Handler;
+import kasyan.processor.JpaUserRepository;
+import kasyan.processor.State;
+import kasyan.processor.User;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -11,10 +11,6 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKe
 
 import java.io.Serializable;
 import java.util.List;
-
-import static by.kasyan.rpa.telegram.util.QuizHandler.QUIZ_START;
-import static by.kasyan.rpa.telegram.util.TelegramUtil.createInlineKeyboardButton;
-import static by.kasyan.rpa.telegram.util.TelegramUtil.createMessageTemplate;
 
 @Component
 public class RegistrationHandler implements Handler {
@@ -50,11 +46,11 @@ public class RegistrationHandler implements Handler {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         List<InlineKeyboardButton> inlineKeyboardButtonsRowOne = List.of(
-                createInlineKeyboardButton("Start quiz", QUIZ_START));
+                TelegramUtil.createInlineKeyboardButton("Start quiz", QuizHandler.QUIZ_START));
 
         inlineKeyboardMarkup.setKeyboard(List.of(inlineKeyboardButtonsRowOne));
 
-        return List.of(createMessageTemplate(user).setText(String.format(
+        return List.of(TelegramUtil.createMessageTemplate(user).setText(String.format(
                 "Твое имя сохранено, как: %s", user.getName()))
                 .setReplyMarkup(inlineKeyboardMarkup));
     }
@@ -69,11 +65,11 @@ public class RegistrationHandler implements Handler {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         List<InlineKeyboardButton> inlineKeyboardButtonsRowOne = List.of(
-                createInlineKeyboardButton("Принять", NAME_ACCEPT));
+                TelegramUtil.createInlineKeyboardButton("Принять", NAME_ACCEPT));
 
         inlineKeyboardMarkup.setKeyboard(List.of(inlineKeyboardButtonsRowOne));
 
-        return List.of(createMessageTemplate(user)
+        return List.of(TelegramUtil.createMessageTemplate(user)
                 .setText(String.format("Ваше имя: %s%n Для подтверждения, нажмите кнопку ниже", user.getName()))
                 .setReplyMarkup(inlineKeyboardMarkup));
     }
@@ -87,11 +83,11 @@ public class RegistrationHandler implements Handler {
         InlineKeyboardMarkup inlineKeyboardMarkup = new InlineKeyboardMarkup();
 
         List<InlineKeyboardButton> inlineKeyboardButtonsRowOne = List.of(
-                createInlineKeyboardButton("Завершить", NAME_CHANGE_CANCEL));
+                TelegramUtil.createInlineKeyboardButton("Завершить", NAME_CHANGE_CANCEL));
 
         inlineKeyboardMarkup.setKeyboard(List.of(inlineKeyboardButtonsRowOne));
 
-        return List.of(createMessageTemplate(user).setText(String.format(
+        return List.of(TelegramUtil.createMessageTemplate(user).setText(String.format(
                 "Ваше нынешнее имя: %s%n Введите новое имя или нажмите кнопку, чтобы продолжить", user.getName()))
                 .setReplyMarkup(inlineKeyboardMarkup));
     }

@@ -1,6 +1,7 @@
-package by.kasyan.rpa.telegram.util;
+package kasyan.util;
 
-import by.kasyan.rpa.telegram.processor.*;
+
+import kasyan.processor.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.PartialBotApiMethod;
@@ -12,8 +13,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static by.kasyan.rpa.telegram.util.TelegramUtil.createInlineKeyboardButton;
-import static by.kasyan.rpa.telegram.util.TelegramUtil.createMessageTemplate;
+import static kasyan.util.TelegramUtil.createInlineKeyboardButton;
+import static kasyan.util.TelegramUtil.createMessageTemplate;
 
 @Slf4j
 @Component

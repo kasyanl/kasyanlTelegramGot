@@ -1,4 +1,4 @@
-package by.kasyan.rpa.telegram.processor;
+package kasyan.processor;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

@@ -1,4 +1,4 @@
-package by.kasyan.rpa.telegram.processor;
+package kasyan.processor;
 
 import lombok.*;
 
